@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold mb-4">Welcome to Employee Management System</h1>
+    <p class="lead">A comprehensive management system for departments and employees</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-building me-2"></i>Departments</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="bi bi-buildings fs-1 text-primary"></i>
+                </div>
+                <p class="card-text">Manage all departments within your organization. Create new departments, update information, and view department details.</p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Departments" asp-action="Index" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-right-circle me-1"></i> View Departments
+                    </a>
+                    <a asp-controller="Departments" asp-action="Create" class="btn btn-outline-success">
+                        <i class="bi bi-plus-circle me-1"></i> Create New Department
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-info">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-people me-2"></i>Employees</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="bi bi-people-fill fs-1 text-info"></i>
+                </div>
+                <p class="card-text">Manage your workforce effectively. Add new employees, update employee information, and organize staff by department.</p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Employees" asp-action="Index" class="btn btn-outline-info">
+                        <i class="bi bi-arrow-right-circle me-1"></i> View Employees
+                    </a>
+                    <a asp-controller="Employees" asp-action="Create" class="btn btn-outline-success">
+                        <i class="bi bi-plus-circle me-1"></i> Create New Employee
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="bi bi-gear me-2"></i>Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a asp-controller="Departments" asp-action="Create" class="text-decoration-none">
+                            <div class="p-3 bg-light rounded-3">
+                                <i class="bi bi-building-add fs-2 text-primary"></i>
+                                <p class="mt-2 mb-0">New Department</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a asp-controller="Employees" asp-action="Create" class="text-decoration-none">
+                            <div class="p-3 bg-light rounded-3">
+                                <i class="bi bi-person-plus fs-2 text-success"></i>
+                                <p class="mt-2 mb-0">New Employee</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a asp-controller="Departments" asp-action="Index" class="text-decoration-none">
+                            <div class="p-3 bg-light rounded-3">
+                                <i class="bi bi-list-check fs-2 text-info"></i>
+                                <p class="mt-2 mb-0">Departments List</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a asp-controller="Employees" asp-action="Index" class="text-decoration-none">
+                            <div class="p-3 bg-light rounded-3">
+                                <i class="bi bi-people fs-2 text-warning"></i>
+                                <p class="mt-2 mb-0">Employees List</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Add staggered animation to cards
+            $(".card").each(function(index) {
+                $(this).css('opacity', '0');
+                $(this).delay(200 * index).animate({opacity: 1}, 500);
+            });
+            
+            // Add hover effect to quick action items
+            $(".bg-light.rounded-3").hover(
+                function() {
+                    $(this).removeClass('bg-light').addClass('bg-primary text-white');
+                    $(this).find('i').removeClass(['text-primary', 'text-success', 'text-info', 'text-warning']).addClass('text-white');
+                },
+                function() {
+                    $(this).removeClass('bg-primary text-white').addClass('bg-light');
+                    // Restore original icon color
+                    const $icon = $(this).find('i');
+                    if ($icon.hasClass('bi-building-add')) {
+                        $icon.addClass('text-primary');
+                    } else if ($icon.hasClass('bi-person-plus')) {
+                        $icon.addClass('text-success');
+                    } else if ($icon.hasClass('bi-list-check')) {
+                        $icon.addClass('text-info');
+                    } else if ($icon.hasClass('bi-people')) {
+                        $icon.addClass('text-warning');
+                    }
+                }
+            );
+        });
+    </script>
+}

@@ -1,0 +1,107 @@
+﻿@model BT_NetcoreMVC.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<div class="page-header">
+    <h1><i class="bi bi-pencil-square me-2"></i>Edit Employee</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Back to List
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+            <input type="hidden" asp-for="EmployeeId" />
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="control-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Address" class="control-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                            <input asp-for="Address" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control" type="email" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="DepartmentId" class="control-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-building"></i></span>
+                            <select asp-for="DepartmentId" class ="form-select" asp-items="ViewBag.DepartmentId"></select>
+                        </div>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-save me-1"></i> Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Details" asp-route-id="@Model?.EmployeeId" class="btn btn-outline-info">
+        <i class="bi bi-info-circle me-1"></i> Details
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        $(document).ready(function() {
+            // Add animation to form
+            $(".card").css('opacity', '0').animate({opacity: 1}, 500);
+            
+            // Focus on first input
+            $('form input:first').focus();
+            
+            // Add custom email validation visualization
+            $('input[type="email"]').on('input', function() {
+                const email = $(this).val();
+                if (email && email.includes('@@') && email.includes('.')) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                } else if (email) {
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-valid is-invalid');
+                }
+            }).trigger('input');
+        });
+    </script>
+};

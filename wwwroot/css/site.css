@@ -1,0 +1,208 @@
+:root {
+  --primary-color: #0d6efd;
+  --primary-dark: #0a58ca;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --body-bg: #f7f9fc;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--body-bg);
+  margin-bottom: 100px;
+  color: #333;
+}
+
+/* Focus styles */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Navbar styling */
+.navbar {
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+}
+
+/* Table styling */
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: var(--card-shadow);
+  background-color: white;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+  font-weight: 600;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Button styling */
+.btn {
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Form styling */
+.form-control {
+  border-radius: 0.3rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.control-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Footer styling */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+/* Page headers */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #212529;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Page title and action buttons */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Action buttons in tables and cards */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-buttons .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Badge styles */
+.badge {
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.3rem;
+}
+
+/* Detail view styles */
+.detail-view {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+}
+
+.detail-view dl.row {
+  margin-bottom: 0;
+}
+
+.detail-view dt {
+  font-weight: 600;
+}
+
+/* Responsive utilities */
+@media (max-width: 767.98px) {
+  .table-responsive {
+    border: 0;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

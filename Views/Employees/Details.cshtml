@@ -1,0 +1,118 @@
+﻿@model BT_NetcoreMVC.Models.Employee
+
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<div class="page-header">
+    <h1><i class="bi bi-person-badge me-2"></i>Employee Details</h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.EmployeeId" class="btn btn-primary">
+            <i class="bi bi-pencil me-1"></i> Edit
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i> Back to List
+        </a>
+    </div>
+</div>
+
+<div class="detail-view">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="d-flex align-items-center">
+                <div class="bg-light p-3 rounded-circle me-3">
+                    <i class="bi bi-person-circle fs-3 text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="mb-1">@Html.DisplayFor(model => model.Name)</h3>
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-building me-1"></i>
+                        @Html.DisplayFor(model => model.Department.DepartmentName)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="my-4">
+    
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-person-vcard me-2"></i>Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.EmployeeId)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.EmployeeId)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Name)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-geo-alt me-2"></i>Contact Details</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Address)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Email)</dt>
+                        <dd class="col-sm-8">
+                            <a href="mailto:@Model.Email" class="text-decoration-none">
+                                <i class="bi bi-envelope me-1"></i>@Html.DisplayFor(model => model.Email)
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-briefcase me-2"></i>Department Information</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Department)</dt>
+                        <dd class="col-sm-10">
+                            <span class="badge bg-info">
+                                @Html.DisplayFor(model => model.Department.DepartmentName)
+                            </span>
+                        </dd>
+                        <dt class="col-sm-2">Department ID</dt>
+                        <dd class="col-sm-10">
+                            <a asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-building me-1"></i> 
+                                @Html.DisplayFor(model => model.Department.DepartmentId) - View Department
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Add fade-in animation to the detail view
+            $(".detail-view").hide().fadeIn(500);
+            
+            // Add staggered fade-in for cards
+            $(".card").each(function(index) {
+                $(this).css('opacity', '0');
+                $(this).delay(200 * index).animate({opacity: 1}, 500);
+            });
+        });
+    </script>
+}
